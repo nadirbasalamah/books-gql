@@ -1,0 +1,18 @@
+query {
+  book {
+    id
+    title
+    author
+    isRead
+  }
+}
+
+mutation {
+  addBook(
+    bookInput: { id: 0, title: "Data Structure", author: "joe", isRead: false }
+  ) {
+    id
+    title
+    author
+  }
+}

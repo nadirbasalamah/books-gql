@@ -1,0 +1,21 @@
+{
+  "name": "books-gql",
+  "version": "1.0.0",
+  "description": "A GraphQL implementation with NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nadir Basalamah",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "express-validator": "^6.12.1",
+    "graphql": "^15.5.3"
+  }
+}
