@@ -9,10 +9,14 @@ type Book {
 }
 
 input BookInputData {
-  id: ID!
   title: String!
   author: String!
   isRead: Boolean!
+}
+
+type RootQuery {
+  book(id: ID!): Book!
+  books: [Book!]!
 }
  
 type RootMutation {
@@ -20,6 +24,7 @@ type RootMutation {
 }
 
 schema {
+  query: RootQuery
   mutation: RootMutation
 }
 `);
