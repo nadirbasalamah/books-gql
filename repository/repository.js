@@ -7,7 +7,7 @@ class BookRepository {
         id: data.id,
         title: data.title,
         author: data.author,
-        is_read: data.isRead,
+        isRead: data.isRead,
       });
 
       return insertedBook;
@@ -40,7 +40,7 @@ class BookRepository {
         {
           title: data.title,
           author: data.author,
-          is_read: data.isRead,
+          isRead: data.isRead,
         },
         {
           where: {
