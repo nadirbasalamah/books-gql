@@ -21,6 +21,8 @@ type RootQuery {
  
 type RootMutation {
   addBook(bookInput: BookInputData!): Book!
+  updateBook(id: ID!, bookInput: BookInputData!): Book!
+  deleteBook(id: ID!): Boolean!
 }
 
 schema {

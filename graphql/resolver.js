@@ -23,4 +23,20 @@ module.exports = {
   book: ({ id }) => {
     return BookService.getBook(id);
   },
+
+  updateBook: ({ id, bookInput }) => {
+    const updatedBook = {
+      title: bookInput.title,
+      author: bookInput.author,
+      isRead: bookInput.isRead,
+    };
+
+    const result = BookService.updateBook(id, updatedBook);
+
+    return result;
+  },
+
+  deleteBook: ({ id }) => {
+    return BookService.deleteBook(id);
+  },
 };
