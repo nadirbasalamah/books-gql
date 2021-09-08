@@ -1,35 +1,77 @@
-const books = require("../model/model");
+const Book = require("../model/model");
 
 class BookRepository {
-  static addBook(data) {
-    books.push(data);
-    return data;
+  static async addBook(data) {
+    try {
+      const insertedBook = await Book.create({
+        id: data.id,
+        title: data.title,
+        author: data.author,
+        is_read: data.isRead,
+      });
+
+      return insertedBook;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  static getBooks() {
-    return books;
+  static async getBooks() {
+    try {
+      const books = await Book.findAll();
+      return books;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  static getBook(id) {
-    return books.filter((book) => book.id === id)[0];
+  static async getBook(id) {
+    try {
+      const book = await Book.findByPk(id);
+      return book;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  static updateBook(id, data) {
-    const updatedBook = this.getBook(id);
+  static async updateBook(id, data) {
+    try {
+      await Book.update(
+        {
+          title: data.title,
+          author: data.author,
+          is_read: data.isRead,
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
 
-    updatedBook.title = data.title;
-    updatedBook.author = data.author;
-    updatedBook.isRead = data.isRead;
+      const updatedBook = await this.getBook(id);
 
-    return updatedBook;
+      return updatedBook;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  static deleteBook(id) {
-    const index = books.findIndex((book) => book.id === id);
+  static async deleteBook(id) {
+    try {
+      const result = await Book.destroy({
+        where: {
+          id: id,
+        },
+      });
 
-    books.splice(index, 1);
-
-    return true;
+      if (result !== 0) {
+        return true;
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   }
 }
 

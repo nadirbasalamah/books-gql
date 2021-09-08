@@ -1,24 +1,24 @@
 const BookRepository = require("../repository/repository");
 
 class BookService {
-  static addBook(data) {
-    return BookRepository.addBook(data);
+  static async addBook(data) {
+    return await BookRepository.addBook(data);
   }
 
-  static getBooks() {
-    return BookRepository.getBooks();
+  static async getBooks() {
+    return await BookRepository.getBooks();
   }
 
-  static getBook(id) {
-    return BookRepository.getBook(id);
+  static async getBook(id) {
+    return await BookRepository.getBook(id);
   }
 
-  static updateBook(id, data) {
-    return BookRepository.updateBook(id, data);
+  static async updateBook(id, data) {
+    return await BookRepository.updateBook(id, data);
   }
 
-  static deleteBook(id) {
-    return BookRepository.deleteBook(id);
+  static async deleteBook(id) {
+    return await BookRepository.deleteBook(id);
   }
 }
 

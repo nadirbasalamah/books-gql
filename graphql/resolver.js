@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 const BookService = require("../service/service");
 
 module.exports = {
-  addBook: ({ bookInput }) => {
+  addBook: async ({ bookInput }) => {
     const createdBook = {
       id: uuidv4(),
       title: bookInput.title,
@@ -11,32 +11,32 @@ module.exports = {
       isRead: bookInput.isRead,
     };
 
-    const result = BookService.addBook(createdBook);
+    const result = await BookService.addBook(createdBook);
 
     return result;
   },
 
-  books: () => {
-    return BookService.getBooks();
+  books: async () => {
+    return await BookService.getBooks();
   },
 
-  book: ({ id }) => {
-    return BookService.getBook(id);
+  book: async ({ id }) => {
+    return await BookService.getBook(id);
   },
 
-  updateBook: ({ id, bookInput }) => {
+  updateBook: async ({ id, bookInput }) => {
     const updatedBook = {
       title: bookInput.title,
       author: bookInput.author,
       isRead: bookInput.isRead,
     };
 
-    const result = BookService.updateBook(id, updatedBook);
+    const result = await BookService.updateBook(id, updatedBook);
 
     return result;
   },
 
-  deleteBook: ({ id }) => {
-    return BookService.deleteBook(id);
+  deleteBook: async ({ id }) => {
+    return await BookService.deleteBook(id);
   },
 };
