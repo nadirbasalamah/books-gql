@@ -68,6 +68,7 @@ class BookRepository {
       if (result !== 0) {
         return true;
       }
+      return false;
     } catch (error) {
       console.log(error);
       return false;
