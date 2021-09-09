@@ -42,7 +42,15 @@ module.exports = {
       throw error;
     }
 
-    return await BookService.getBook(id);
+    const book = await BookService.getBook(id);
+
+    if (book === null) {
+      const error = new Error("Book data not found.");
+      error.code = 404;
+      throw error;
+    }
+
+    return book;
   },
 
   updateBook: async ({ id, bookInput }, req) => {
@@ -60,6 +68,12 @@ module.exports = {
 
     const result = await BookService.updateBook(id, updatedBook);
 
+    if (result === null) {
+      const error = new Error("Book data not found.");
+      error.code = 404;
+      throw error;
+    }
+
     return result;
   },
 
@@ -70,7 +84,15 @@ module.exports = {
       throw error;
     }
 
-    return await BookService.deleteBook(id);
+    const result = await BookService.deleteBook(id);
+
+    if (result === false) {
+      const error = new Error("Book data not found.");
+      error.code = 404;
+      throw error;
+    }
+
+    return result;
   },
 
   signup: async ({ userInput }) => {
