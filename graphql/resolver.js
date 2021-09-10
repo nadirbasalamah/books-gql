@@ -117,6 +117,12 @@ module.exports = {
 
     const foundUser = await AuthService.login(user);
 
+    if (foundUser === null) {
+      const error = new Error("User data not found.");
+      error.code = 404;
+      throw error;
+    }
+
     const isEqual = await bcrypt.compare(user.password, foundUser.password);
     if (isEqual) {
       const userToken = jwt.sign(
